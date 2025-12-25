@@ -1,0 +1,808 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" name="viewport" content="initial-scale=1,user-scalable=no" />
+    <link rel="subresource" href="snow.svg" />
+    <title>Merry Christmas</title>
+    <style>
+      /* 基础动画定义 */
+      @keyframes rotate{
+        from { transform: rotate(0deg);}
+        to { transform: rotate(360deg);}
+      }
+      @-webkit-keyframes rotate{
+        from { transform: rotate(0deg);}
+        to { transform: rotate(360deg);}
+      }
+      @-moz-keyframes rotate{
+         from { transform: rotate(0deg);}
+        to { transform: rotate(360deg);}
+      }
+
+      @keyframes snowRotate {
+        from {
+          transform: rotate(0);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      @-webkit-keyframes snowRotate {
+        from {
+          -webkit-transform: rotate(0);
+        }
+        to {
+          -webkit-transform: rotate(360deg);
+        }
+      }
+      @-moz-keyframes snowRotate {
+        from {
+          -moz-transform: rotate(0);
+        }
+        to {
+          -moz-transform: rotate(360deg);
+        }
+      }
+      
+      @keyframes snowMove {
+        form {
+          top: 0%;
+        }
+        to {
+          top: 100%;
+        }
+      }
+      @-webkit-keyframes snowMove {
+        form {
+          top: 0%;
+        }
+        to {
+          top: 100%;
+        }
+      }
+      @-moz-keyframes snowMove {
+        form {
+          top: 0%;
+        }
+        to {
+          top: 100%;
+        }
+      }
+      
+      @keyframes textRotate {
+        from {
+          transform: perspective(500px) rotate3d(0, 1, 0, 0);
+          color: green;
+        }
+        20% {
+          transform: perspective(500px) rotate3d(0, 1, 0, 360deg);
+          color: yellow;
+        }
+        40% {
+          transform: perspective(500px) rotate3d(1, 0, 0, 0deg);
+        }
+        60% {
+          transform: perspective(500px) rotate3d(1, 0, 0, 360deg);
+          color: green;
+        }
+        80% {
+          transform: perspective(500px) rotate3d(0, 0, 1, 0deg);
+        }
+        to {
+          transform: perspective(500px) rotate3d(0, 0, 1, 360deg);
+          color: yellow;
+        }
+      }
+      @-webkit-keyframes textRotate {
+        from {
+          -webkit-transform: perspective(500px) rotate3d(0, 1, 0, 0);
+          color: green;
+        }
+        20% {
+          -webkit-transform: perspective(500px) rotate3d(0, 1, 0, 360deg);
+          color: yellow;
+        }
+        40% {
+          -webkit-transform: perspective(500px) rotate3d(1, 0, 0, 0deg);
+        }
+        60% {
+          -webkit-transform: perspective(500px) rotate3d(1, 0, 0, 360deg);
+          color: green;
+        }
+        80% {
+          -webkit-transform: perspective(500px) rotate3d(0, 0, 1, 0deg);
+        }
+        to {
+          -webkit-transform: perspective(500px) rotate3d(0, 0, 1, 360deg);
+          color: yellow;
+        }
+      }
+      @-moz-keyframes textRotate {
+        from {
+          -moz-transform: perspective(500px) rotate3d(0, 1, 0, 0);
+          color: green;
+        }
+        20% {
+          -moz-transform: perspective(500px) rotate3d(0, 1, 0, 360deg);
+          color: yellow;
+        }
+        40% {
+          -moz-transform: perspective(500px) rotate3d(1, 0, 0, 0deg);
+        }
+        60% {
+          -moz-transform: perspective(500px) rotate3d(1, 0, 0, 360deg);
+          color: green;
+        }
+        80% {
+          -moz-transform: perspective(500px) rotate3d(0, 0, 1, 0deg);
+        }
+        to {
+          -moz-transform: perspective(500px) rotate3d(0, 0, 1, 360deg);
+          color: yellow;
+        }
+      }
+      
+      /* 基础样式 */
+      body {
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        background: rgb(200, 0, 0);
+        overflow: hidden;
+        font-family: 'Arial', sans-serif;
+      }
+      
+      h1 {
+        font-size: 2rem;
+        font-family: Times New Roman;
+        max-width: 8em;
+        text-shadow: .03em .03em .03em white,
+        -.02em -.02em .02em black;
+        text-align: center;
+        margin: auto;
+        margin-top: 100px;
+        box-shadow: 0 -.1em .1em white;
+        animation: textRotate 24s linear infinite;
+        -webkit-animation: textRotate 24s linear infinite;
+        -moz-animation: textRotate 24s linear infinite;
+        z-index: 100;
+        position: relative;
+      }
+      
+      #container {
+        width: 100%;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        z-index: 2;
+      }
+      
+      img.snowflake {
+        width: 10px;
+        position: absolute;
+        top: 0;
+        animation: snowRotate 5s infinite alternate,
+        snowMove 4s linear;
+        -webkit-animation: snowRotate 5s infinite alternate,
+        snowMove 4s linear;
+        -moz-animation: snowRotate 5s infinite alternate,
+        snowMove 4s linear;
+        pointer-events: none;
+      }
+      
+      #bottom {
+        width: 100%;
+        height: 30%;
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        background: linear-gradient(transparent, rgb(200, 0, 0));
+        background: -webkit-linear-gradient(transparent, rgb(200, 0, 0));
+        background: -moz-linear-gradient(transparent, rgb(200, 0, 0));
+        z-index: 3;
+        pointer-events: none;
+      }
+      
+      #pic{
+        display: block;
+        position: fixed;
+        overflow: hidden;
+        width: 200px;
+        height: 200px;    
+        top: 50%;
+        left: 50%;
+        margin-top: -100px;
+        margin-left: -100px;
+        border-radius: 50%;
+        border: 5px;
+        border-color: pink;
+        border-style: ridge;
+        animation: rotate 10s linear 0s infinite;
+        -webkit-animation: rotate 10s linear 0s infinite;
+        -moz-animation: rotate 10s linear 0s infinite;
+        z-index: 4;
+      }
+
+      /* 已删除按钮相关样式 */
+      #but, #tree-container, #back-btn {
+        display: none !important;
+      }
+      
+      /* 惊喜按钮样式 */
+      #surprise-btn {
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(5px);
+        border: 2px solid pink;
+        color: white;
+        padding: 12px 24px;
+        font-size: 1.2rem;
+        font-weight: bold;
+        border-radius: 50px;
+        cursor: pointer;
+        z-index: 10;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        white-space: nowrap;
+      }
+      
+      #surprise-btn:hover {
+        background-color: rgba(255, 182, 193, 0.4);
+        transform: translateX(-50%) scale(1.05);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+      }
+      
+      /* 圣诞贺卡遮罩层 */
+      #card-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.85);
+        z-index: 20;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+      }
+      
+      #card-overlay.active {
+        display: flex;
+        opacity: 1;
+      }
+      
+      /* 圣诞贺卡容器 */
+      #christmas-card {
+        width: 90%;
+        max-width: 800px;
+        height: 80%;
+        max-height: 600px;
+        background: linear-gradient(135deg, #1a5f23 0%, #0d3b1e 100%);
+        border-radius: 20px;
+        border: 10px solid #c41e3a;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 50px rgba(255, 215, 0, 0.5);
+        padding: 30px;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transform: scale(0.9);
+        transition: transform 0.5s ease;
+      }
+      
+      #christmas-card.active {
+        transform: scale(1);
+      }
+      
+      /* 贺卡装饰 */
+      #card-decoration {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 1;
+      }
+      
+      .card-snowflake {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background-color: white;
+        clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+        opacity: 0.8;
+      }
+      
+      /* 贺卡内容 */
+      #card-content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        color: white;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 20px;
+      }
+      
+      .card-header {
+        margin-bottom: 20px;
+      }
+      
+      .card-header h2 {
+        font-size: 3rem;
+        color: #ffd700;
+        text-shadow: 3px 3px 0 #c41e3a, 6px 6px 5px rgba(0, 0, 0, 0.5);
+        margin-bottom: 10px;
+        font-family: 'Times New Roman', serif;
+      }
+      
+      .card-header h3 {
+        font-size: 1.8rem;
+        color: #ffebcd;
+        margin-top: 0;
+        font-style: italic;
+      }
+      
+      .card-message {
+        font-size: 1.3rem;
+        line-height: 1.6;
+        margin: 20px 0;
+        padding: 20px;
+        background-color: rgba(0, 0, 0, 0.3);
+        border-radius: 10px;
+        border-left: 5px solid #c41e3a;
+      }
+      
+      .card-signature {
+        font-size: 1.5rem;
+        color: #ffd700;
+        margin-top: 20px;
+        font-family: 'Brush Script MT', cursive;
+      }
+      
+      /* 关闭按钮 */
+      #close-card {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: 40px;
+        height: 40px;
+        background-color: #c41e3a;
+        border-radius: 50%;
+        border: none;
+        color: white;
+        font-size: 1.5rem;
+        cursor: pointer;
+        z-index: 3;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.3s ease;
+      }
+      
+      #close-card:hover {
+        background-color: #ff0000;
+        transform: rotate(90deg);
+      }
+      
+      /* 音频控制按钮样式 */
+      #music-control {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        background-color: pink;
+        border-radius: 50%;
+        border: none;
+        color: black;
+        font-size: 1.2rem;
+        cursor: pointer;
+        z-index: 11;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      #music-control:hover {
+        background-color: #ff9acd;
+        transform: scale(1.1);
+      }
+      
+      /* 移动端适配 */
+      @media screen and (max-width: 768px) {
+        h1 {
+          font-size: 1.5rem;
+          margin-top: 80px;
+        }
+        
+        #pic {
+          width: 150px;
+          height: 150px;
+          margin-top: -75px;
+          margin-left: -75px;
+        }
+        
+        img.snowflake {
+          width: 8px;
+        }
+        
+        #surprise-btn {
+          top: 15px;
+          padding: 10px 20px;
+          font-size: 1rem;
+        }
+        
+        #christmas-card {
+          width: 95%;
+          height: 85%;
+          padding: 20px;
+        }
+        
+        .card-header h2 {
+          font-size: 2.2rem;
+        }
+        
+        .card-header h3 {
+          font-size: 1.4rem;
+        }
+        
+        .card-message {
+          font-size: 1.1rem;
+          padding: 15px;
+        }
+        
+        .card-signature {
+          font-size: 1.3rem;
+        }
+        
+        #music-control {
+          bottom: 15px;
+          right: 15px;
+          width: 45px;
+          height: 45px;
+        }
+      }
+      
+      @media screen and (max-width: 480px) {
+        h1 {
+          font-size: 1.2rem;
+          margin-top: 70px;
+        }
+        
+        #pic {
+          width: 120px;
+          height: 120px;
+          margin-top: -60px;
+          margin-left: -60px;
+          border-width: 3px;
+        }
+        
+        img.snowflake {
+          width: 6px;
+        }
+        
+        #surprise-btn {
+          /* top: 10px;
+          padding: 8px 16px;
+          font-size: 0.9rem;
+          width: 90%;
+          text-align: center; */
+                 position: fixed;
+            width: clamp(160px, 40vw, 250px);
+            height: clamp(45px, 8vh, 60px);
+            left: 50%;
+            bottom: clamp(20%, 25vh, 30%);
+            transform: translateX(-50%);
+            background: linear-gradient(145deg, #FF69B4, #FF1493);
+            border-radius: 50px;
+            border: none;
+            font-family: '楷体', 'KaiTi', 'STKaiti', serif;
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 10;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2),
+                    0 0 15px rgba(255, 20, 147, 0.3);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            letter-spacing: 1px;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        #christmas-card {
+          width: 97%;
+          height: 90%;
+          padding: 15px;
+          border-width: 5px;
+        }
+        
+        .card-header h2 {
+          font-size: 1.8rem;
+        }
+        
+        .card-header h3 {
+          font-size: 1.1rem;
+        }
+        
+        .card-message {
+          font-size: 1rem;
+          padding: 10px;
+        }
+        
+        .card-signature {
+          font-size: 1.1rem;
+        }
+        
+        #close-card {
+          top: 10px;
+          right: 10px;
+          width: 35px;
+          height: 35px;
+          font-size: 1.2rem;
+        }
+        
+        #music-control {
+          width: 40px;
+          height: 40px;
+          font-size: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Merry Christmas</h1>
+    
+    <!-- 惊喜按钮 -->
+    <!-- <button id="surprise-btn">🎄 我有惊喜 🎄</button> -->
+    
+    <!-- 圣诞贺卡遮罩层 -->
+    <div id="card-overlay">
+      <div id="christmas-card">
+        <!-- 贺卡装饰 -->
+        <div id="card-decoration"></div>
+        
+        <!-- 关闭按钮 -->
+        <button id="close-card">×</button>
+        
+        <!-- 贺卡内容 -->
+        <div id="card-content">
+          <div class="card-header">
+            <h2>Merry Christmas!</h2>
+            <h3>圣诞快乐 · 新年如意</h3>
+          </div>
+          
+          <div class="card-message">
+            <p>亲爱的朋友，</p>
+            <p>在这个充满欢乐与祝福的圣诞季节，愿平安与喜乐常伴你左右。</p>
+            <p>愿圣诞的钟声带给你温馨的回忆，愿闪烁的彩灯照亮你前行的道路。</p>
+            <p>雪花飞舞，传递着冬日的祝福；铃儿叮当，奏响着幸福的乐章。</p>
+            <p>愿新的一年里，你所有的梦想都能实现，所有的努力都有回报。</p>
+          </div>
+          
+          <div class="card-signature">
+            <p>祝福你与家人</p>
+            <p>圣诞快乐，新年蒙福！</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div id="container"></div>
+    <div id="bottom"></div>
+    <embed id="pic" src="oldmen.svg" type="image/svg+xml"></embed> 
+        <!-- 惊喜按钮 -->
+    <button id="surprise-btn">🎄 点我有惊喜 🎄</button>
+    <!-- 音频控制按钮 -->
+    <button id="music-control">♪</button>
+    
+    <!-- 音频播放器 -->
+    <audio id="bg-music" preload="auto" loop="loop">
+      <source src="./music/jinglebells.mp3" type="audio/mpeg">
+      <source src="./music/jinglebells.ogg" type="audio/ogg">
+      您的浏览器不支持音频播放
+    </audio>
+    
+    <script>
+      // 雪花效果代码
+      var w = innerWidth;
+      var h = innerHeight;
+      var container = document.querySelector('#container');
+      var snowImg = document.createElement('img');
+      var snow_number = h / 3;
+      
+      snowImg.src = './snow.svg';
+      snowImg.className = 'snowflake';
+      
+      // 创建雪花
+      var int1 = setInterval(function(){
+        w = innerWidth;
+        h = innerHeight;
+        var snowTmpImg = snowImg.cloneNode();
+        snow_left = Math.round(Math.random()*w) - 20;
+        snowTmpImg.style.left = snow_left + 'px';
+        snowTmpImg.style.width = Math.round(Math.random()*15) + 5 + 'px';
+        snowTmpImg.style.opacity = Math.round(Math.random()*10)/10;
+        container.appendChild(snowTmpImg);
+      }, 100);
+      
+      // 清理过多雪花
+      var int2 = setInterval(function(){
+        if (container.childNodes.length > snow_number) {
+          container.removeChild(container.childNodes[0]);
+        }
+      }, 1000);
+      
+      // 圣诞贺卡功能
+      const surpriseBtn = document.getElementById('surprise-btn');
+      const cardOverlay = document.getElementById('card-overlay');
+      const christmasCard = document.getElementById('christmas-card');
+      const closeCardBtn = document.getElementById('close-card');
+      const cardDecoration = document.getElementById('card-decoration');
+      
+      // 生成贺卡装饰雪花
+      function createCardSnowflakes() {
+        for (let i = 0; i < 15; i++) {
+          const snowflake = document.createElement('div');
+          snowflake.classList.add('card-snowflake');
+          
+          // 随机位置
+          snowflake.style.left = Math.random() * 100 + '%';
+          snowflake.style.top = Math.random() * 100 + '%';
+          
+          // 随机大小
+          const size = Math.random() * 15 + 10;
+          snowflake.style.width = size + 'px';
+          snowflake.style.height = size + 'px';
+          
+          // 随机旋转
+          snowflake.style.transform = `rotate(${Math.random() * 360}deg)`;
+          
+          // 随机动画延迟
+          snowflake.style.animation = `snowRotate ${Math.random() * 10 + 5}s linear infinite`;
+          
+          cardDecoration.appendChild(snowflake);
+        }
+      }
+      
+      // 打开圣诞贺卡
+      surpriseBtn.addEventListener('click', function() {
+        cardOverlay.classList.add('active');
+        setTimeout(() => {
+          christmasCard.classList.add('active');
+        }, 50);
+        
+        // 暂停背景雪花动画以提高性能
+        const snowflakes = document.querySelectorAll('.snowflake');
+        snowflakes.forEach(flake => {
+          flake.style.animationPlayState = 'paused';
+        });
+      });
+      
+      // 关闭圣诞贺卡
+      closeCardBtn.addEventListener('click', function() {
+        christmasCard.classList.remove('active');
+        setTimeout(() => {
+          cardOverlay.classList.remove('active');
+          
+          // 恢复背景雪花动画
+          const snowflakes = document.querySelectorAll('.snowflake');
+          snowflakes.forEach(flake => {
+            flake.style.animationPlayState = 'running';
+          });
+        }, 300);
+      });
+      
+      // 点击遮罩层也可以关闭贺卡
+      cardOverlay.addEventListener('click', function(e) {
+        if (e.target === cardOverlay) {
+          closeCardBtn.click();
+        }
+      });
+      
+      // 初始化贺卡装饰
+      createCardSnowflakes();
+      
+      // 音频控制
+      var bgMusic = document.getElementById('bg-music');
+      var musicControl = document.getElementById('music-control');
+      var isPlaying = false;
+      
+      // 页面加载后立即播放音乐
+      window.addEventListener('load', function() {
+        // 尝试自动播放音乐
+        playMusic();
+        
+        // 添加点击事件用于用户交互后播放
+        document.body.addEventListener('click', function() {
+          if (!isPlaying) {
+            playMusic();
+          }
+        }, { once: true });
+      });
+      
+      // 播放音乐函数
+      function playMusic() {
+        bgMusic.volume = 0.5;
+        bgMusic.play().then(function() {
+          isPlaying = true;
+          musicControl.textContent = '♫';
+          console.log("圣诞音乐开始播放！");
+        }).catch(function(e) {
+          console.log("音乐播放需要用户交互:", e);
+          musicControl.textContent = '♪';
+          musicControl.title = "点击播放音乐";
+        });
+      }
+      
+      // 音乐控制按钮点击事件
+      musicControl.addEventListener('click', function() {
+        if (isPlaying) {
+          bgMusic.pause();
+          isPlaying = false;
+          musicControl.textContent = '♪';
+          console.log("音乐已暂停");
+        } else {
+          bgMusic.play();
+          isPlaying = true;
+          musicControl.textContent = '♫';
+          console.log("音乐已播放");
+        }
+      });
+      
+      // 监听音频播放状态
+      bgMusic.addEventListener('play', function() {
+        isPlaying = true;
+        musicControl.textContent = '♫';
+      });
+      
+      bgMusic.addEventListener('pause', function() {
+        isPlaying = false;
+        musicControl.textContent = '♪';
+      });
+      
+      bgMusic.addEventListener('error', function() {
+        console.log("背景音乐加载失败，检查音乐文件路径");
+        musicControl.style.display = 'none';
+      });
+      
+      // 窗口大小调整时更新雪花参数
+      window.addEventListener('resize', function() {
+        w = innerWidth;
+        h = innerHeight;
+        snow_number = h / 3;
+      });
+      
+      // 触摸设备优化
+      document.addEventListener('touchstart', function() {
+        if (!isPlaying) {
+          playMusic();
+        }
+      }, { once: true });
+      
+      // ESC键关闭贺卡
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && cardOverlay.classList.contains('active')) {
+          closeCardBtn.click();
+        }
+      });
+    </script>
+  </body>
+</html>
