@@ -1,169 +1,133 @@
 <!doctype html>
-<html>
+<html lang="zh-CN">
   <head>
-    <meta charset="utf-8" name="viewport" content="initial-scale=1,user-scalable=no" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <link rel="subresource" href="snow.svg" />
     <title>Merry Christmas</title>
     <style>
+      /* 基础重置和响应式盒子模型 */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      /* 响应式字体大小 */
+      html {
+        font-size: 16px;
+      }
+      
+      @media (max-width: 768px) {
+        html {
+          font-size: 14px;
+        }
+      }
+      
+      @media (max-width: 480px) {
+        html {
+          font-size: 12px;
+        }
+      }
+      
+      /* 动画定义 */
       @keyframes rotate{
-        from { transform: rotate(0deg);}
-        to { transform: rotate(360deg);}
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
       }
-      @-webkit-keyframes rotate{
-        from { transform: rotate(0deg);}
-        to { transform: rotate(360deg);}
-      }
-      @-moz-keyframes rotate{
-         from { transform: rotate(0deg);}
-        to { transform: rotate(360deg);}
-      }
-
+      
       @keyframes snowRotate {
-        from {
-          transform: rotate(0);
-        }
-        to {
-          transform: rotate(360deg);
-        }
+        from { transform: rotate(0); }
+        to { transform: rotate(360deg); }
       }
-      @-webkit-keyframes snowRotate {
-        from {
-          -webkit-transform: rotate(0);
-        }
-        to {
-          -webkit-transform: rotate(360deg);
-        }
-      }
-      @-moz-keyframes snowRotate {
-        from {
-          -moz-transform: rotate(0);
-        }
-        to {
-          -moz-transform: rotate(360deg);
-        }
-      }
+      
       @keyframes snowMove {
-        form {
-          top: 0%;
-        }
-        to {
-          top: 100%;
-        }
+        from { top: -50px; }
+        to { top: 100%; }
       }
-      @-webkit-keyframes snowMove {
-        form {
-          top: 0%;
-        }
-        to {
-          top: 100%;
-        }
-      }
-      @-moz-keyframes snowMove {
-        form {
-          top: 0%;
-        }
-        to {
-          top: 100%;
-        }
-      }
+      
       @keyframes textRotate {
-        from {
+        0% {
           transform: perspective(500px) rotate3d(0, 1, 0, 0);
-          color: green;
+          color: #4CAF50;
         }
         20% {
           transform: perspective(500px) rotate3d(0, 1, 0, 360deg);
-          color: yellow;
+          color: #FFEB3B;
         }
         40% {
           transform: perspective(500px) rotate3d(1, 0, 0, 0deg);
         }
         60% {
           transform: perspective(500px) rotate3d(1, 0, 0, 360deg);
-          color: green;
+          color: #4CAF50;
         }
         80% {
           transform: perspective(500px) rotate3d(0, 0, 1, 0deg);
         }
-        to {
+        100% {
           transform: perspective(500px) rotate3d(0, 0, 1, 360deg);
-          color: yellow;
-        }
-      }
-      @-webkit-keyframes textRotate {
-        from {
-          -webkit-transform: perspective(500px) rotate3d(0, 1, 0, 0);
-          color: green;
-        }
-        20% {
-          -webkit-transform: perspective(500px) rotate3d(0, 1, 0, 360deg);
-          color: yellow;
-        }
-        40% {
-          -webkit-transform: perspective(500px) rotate3d(1, 0, 0, 0deg);
-        }
-        60% {
-          -webkit-transform: perspective(500px) rotate3d(1, 0, 0, 360deg);
-          color: green;
-        }
-        80% {
-          -webkit-transform: perspective(500px) rotate3d(0, 0, 1, 0deg);
-        }
-        to {
-          -webkit-transform: perspective(500px) rotate3d(0, 0, 1, 360deg);
-          color: yellow;
-        }
-      }
-      @-moz-keyframes textRotate {
-        from {
-          -moz-transform: perspective(500px) rotate3d(0, 1, 0, 0);
-          color: green;
-        }
-        20% {
-          -moz-transform: perspective(500px) rotate3d(0, 1, 0, 360deg);
-          color: yellow;
-        }
-        40% {
-          -moz-transform: perspective(500px) rotate3d(1, 0, 0, 0deg);
-        }
-        60% {
-          -moz-transform: perspective(500px) rotate3d(1, 0, 0, 360deg);
-          color: green;
-        }
-        80% {
-          -moz-transform: perspective(500px) rotate3d(0, 0, 1, 0deg);
-        }
-        to {
-          -moz-transform: perspective(500px) rotate3d(0, 0, 1, 360deg);
-          color: yellow;
+          color: #FFEB3B;
         }
       }
       
+      @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+      }
+      
+      /* 响应式主体样式 */
       body {
-        width: 100%;
+        width: 100vw;
+        height: 100vh;
         padding: 0;
         margin: 0;
-        background: rgb(200, 0, 0);
+        background: linear-gradient(135deg, #c62828 0%, #8e0000 100%);
         overflow: hidden;
+        position: fixed;
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
       }
+      
+      /* 标题响应式 */
       h1 {
-        font-size: 2rem;
-        font-family: Times New Roman;
-        max-width: 8em;
-        text-shadow: .03em .03em .03em white,
-        -.02em -.02em .02em black;
+        font-size: clamp(1.8rem, 5vw, 3rem);
+        font-family: 'Times New Roman', Georgia, serif;
+        max-width: 90vw;
+        text-shadow: 0.05em 0.05em 0.1em rgba(255, 255, 255, 0.8),
+                    -0.03em -0.03em 0.05em rgba(0, 0, 0, 0.5);
         text-align: center;
-        margin: auto;
-        margin-top: 100px;
-        box-shadow: 0 -.1em .1em white;
-        animation: textRotate 24s linear infinite;
-        -webkit-animation: textRotate 24s linear infinite;
-        -moz-animation: textRotate 24s linear infinite;
+        margin: 0 auto;
+        margin-top: max(5vh, 50px);
+        padding: 0.5em 1em;
+        box-shadow: 0 -0.2em 0.3em rgba(255, 255, 255, 0.3),
+                   inset 0 0.1em 0.2em rgba(255, 255, 255, 0.2);
+        animation: textRotate 24s linear infinite,
+                  pulse 3s ease-in-out infinite;
         z-index: 100;
         position: relative;
+        background: linear-gradient(45deg, rgba(198, 40, 40, 0.3), rgba(142, 0, 0, 0.3));
+        border-radius: 20px;
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
       }
+      
+      /* 手机端标题调整 */
+      @media (max-width: 480px) {
+        h1 {
+          margin-top: max(3vh, 30px);
+          padding: 0.4em 0.8em;
+          border-radius: 15px;
+          font-weight: bold;
+        }
+      }
+      
+      /* 雪花容器 */
       #container {
-        width: 100%;
+        width: 100vw;
         height: 100vh;
         position: fixed;
         top: 0;
@@ -172,96 +136,249 @@
         z-index: 2;
       }
       
+      /* 雪花响应式 */
       img.snowflake {
-        width: 10px;
         position: absolute;
-        top: 0;
-        animation: snowRotate 5s infinite alternate,
-        snowMove 4s linear;
-        -webkit-animation: snowRotate 5s infinite alternate,
-        snowMove 4s linear;
-        -moz-animation: snowRotate 5s infinite alternate,
-        snowMove 4s linear;
+        top: -20px;
+        opacity: 0.8;
+        animation: snowRotate 5s linear infinite alternate,
+                  snowMove 8s linear forwards;
         pointer-events: none;
+        will-change: transform, top;
+        filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.5));
       }
       
+      /* 不同设备的雪花大小 */
+      @media (min-width: 1024px) {
+        img.snowflake {
+          width: 15px;
+          height: 15px;
+        }
+      }
+      
+      @media (max-width: 1023px) and (min-width: 768px) {
+        img.snowflake {
+          width: 12px;
+          height: 12px;
+        }
+      }
+      
+      @media (max-width: 767px) {
+        img.snowflake {
+          width: 8px;
+          height: 8px;
+        }
+      }
+      
+      /* 底部渐变 */
       #bottom {
-        width: 100%;
-        height: 30%;
+        width: 100vw;
+        height: 30vh;
         position: fixed;
         left: 0;
         bottom: 0;
-        background: linear-gradient(transparent, rgb(200, 0, 0));
-        background: -webkit-linear-gradient(transparent, rgb(200, 0, 0));
-        background: -moz-linear-gradient(transparent, rgb(200, 0, 0));
+        background: linear-gradient(to top, rgba(198, 40, 40, 1) 0%, rgba(198, 40, 40, 0) 100%);
         z-index: 3;
         pointer-events: none;
       }
       
-      #pic{
+      /* 圣诞老人图片响应式 */
+      #pic {
         display: block;
         position: fixed;
         overflow: hidden;
-        width: 200px;
-        height: 200px;    
+        width: clamp(150px, 20vw, 250px);
+        height: clamp(150px, 20vw, 250px);
         top: 50%;
         left: 50%;
-        margin-top: -100px;
-        margin-left: -100px;
+        transform: translate(-50%, -50%);
         border-radius: 50%;
-        border: 5px;
-        border-color: pink;
+        border: 3px solid #FF69B4;
         border-style: ridge;
-        animation: rotate 10s linear 0s infinite;
-        -webkit-animation: rotate 10s linear 0s infinite;
-        -moz-animation: rotate 10s linear 0s infinite;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3),
+                   0 0 20px rgba(255, 105, 180, 0.4),
+                   inset 0 0 20px rgba(255, 255, 255, 0.2);
+        animation: rotate 20s linear infinite;
         z-index: 4;
-      }
-
-      #but{
-        position: fixed;
-        width: 190px;
-        height: 40px;
-        left: 50%;
-        bottom: 25%;
-        margin-bottom: -20px;
-        margin-left: -95px;
-        background-color: pink;
-        border-radius: 10px;
-        border: none;
-        font-family: '楷体';
-        font-size: 1.5rem;
-        color: black;
-        cursor: pointer;
         transition: all 0.3s ease;
+        background: white;
+        padding: 5px;
+      }
+      
+      /* 移动端圣诞老人调整 */
+      @media (max-width: 768px) {
+        #pic {
+          width: clamp(120px, 25vw, 180px);
+          height: clamp(120px, 25vw, 180px);
+          border-width: 2px;
+        }
+      }
+      
+      /* 按钮响应式 */
+      #but {
+        position: fixed;
+        width: clamp(160px, 40vw, 250px);
+        height: clamp(45px, 8vh, 60px);
+        left: 50%;
+        bottom: clamp(20%, 25vh, 30%);
+        transform: translateX(-50%);
+        background: linear-gradient(145deg, #FF69B4, #FF1493);
+        border-radius: 50px;
+        border: none;
+        font-family: '楷体', 'KaiTi', 'STKaiti', serif;
+        font-size: clamp(1.2rem, 3vw, 1.8rem);
+        font-weight: bold;
+        color: white;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         z-index: 10;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2),
+                   0 0 15px rgba(255, 20, 147, 0.3);
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        letter-spacing: 1px;
+        padding: 0 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
       }
       
-      #but:hover {
-        background-color: #ff9acd;
-        transform: scale(1.05);
-        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      #but:hover, #but:active {
+        background: linear-gradient(145deg, #FF1493, #FF69B4);
+        transform: translateX(-50%) scale(1.08);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3),
+                   0 0 20px rgba(255, 20, 147, 0.5);
       }
       
-      /* 圣诞树视频容器样式 */
+      /* 移动端按钮调整 */
+      @media (max-width: 768px) {
+        #but {
+          height: clamp(40px, 7vh, 50px);
+          font-size: clamp(1rem, 4vw, 1.4rem);
+          border-radius: 40px;
+          bottom: clamp(15%, 20vh, 25%);
+        }
+        
+        #but:active {
+          transform: translateX(-50%) scale(0.98);
+        }
+      }
+      
+      /* 按钮图标 */
+      #but::after {
+        content: "🎁";
+        font-size: 1.2em;
+        filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.3));
+      }
+      
+      /* 圣诞树视频容器 */
       #tree-container {
         position: fixed;
         top: 0;
         left: 0;
-        width: 100%;
-        height: 100%;
+        width: 100vw;
+        height: 100vh;
         z-index: 5;
         display: none;
         opacity: 0;
-        transition: opacity 1s ease;
+        transition: opacity 0.8s ease;
+        background: #000;
       }
       
+      /* 视频响应式 */
       #tree-video {
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        object-fit: contain;
+        background: #000;
       }
       
+      /* 手机端视频调整 */
+      @media (orientation: portrait) {
+        #tree-video {
+          object-fit: cover;
+        }
+      }
+      
+      /* 返回按钮响应式 */
+      #back-btn {
+        position: fixed;
+        width: clamp(45px, 10vw, 60px);
+        height: clamp(45px, 10vw, 60px);
+        top: max(20px, env(safe-area-inset-top));
+        right: max(20px, env(safe-area-inset-right));
+        background: linear-gradient(135deg, #FF69B4, #FF1493);
+        border-radius: 50%;
+        border: none;
+        color: white;
+        font-size: clamp(1.2rem, 3vw, 1.8rem);
+        cursor: pointer;
+        z-index: 11;
+        display: none;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+      }
+      
+      #back-btn:hover, #back-btn:active {
+        background: linear-gradient(135deg, #FF1493, #FF69B4);
+        transform: rotate(180deg) scale(1.1);
+      }
+      
+      /* 移动端返回按钮 */
+      @media (max-width: 768px) {
+        #back-btn {
+          width: 50px;
+          height: 50px;
+          top: max(15px, env(safe-area-inset-top));
+          right: max(15px, env(safe-area-inset-right));
+        }
+        
+        #back-btn:active {
+          transform: rotate(90deg) scale(0.95);
+        }
+      }
+      
+      /* 音乐控制按钮 */
+      #music-toggle {
+        position: fixed;
+        width: 50px;
+        height: 50px;
+        bottom: max(20px, env(safe-area-inset-bottom));
+        left: max(20px, env(safe-area-inset-left));
+        background: linear-gradient(135deg, rgba(255, 105, 180, 0.9), rgba(255, 20, 147, 0.9));
+        border-radius: 50%;
+        border: none;
+        color: white;
+        font-size: 1.5rem;
+        cursor: pointer;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+      }
+      
+      #music-toggle:hover, #music-toggle:active {
+        transform: scale(1.1);
+        background: linear-gradient(135deg, rgba(255, 20, 147, 0.9), rgba(255, 105, 180, 0.9));
+      }
+      
+      @media (max-width: 768px) {
+        #music-toggle {
+          width: 45px;
+          height: 45px;
+          font-size: 1.3rem;
+          bottom: max(15px, env(safe-area-inset-bottom));
+          left: max(15px, env(safe-area-inset-left));
+        }
+      }
+      
+      /* 工具类 */
       .show-tree {
         display: block !important;
         opacity: 1 !important;
@@ -270,38 +387,72 @@
       .hide-main {
         opacity: 0 !important;
         pointer-events: none !important;
-      }
-      
-      /* 返回按钮样式 */
-      #back-btn {
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        width: 50px;
-        height: 50px;
-        background-color: pink;
-        border-radius: 50%;
-        border: none;
-        color: black;
-        font-size: 1.2rem;
-        cursor: pointer;
-        z-index: 11;
-        display: none;
-        transition: all 0.3s ease;
-      }
-      
-      #back-btn:hover {
-        background-color: #ff9acd;
-        transform: rotate(90deg);
+        transform: scale(0.95);
+        transition: all 0.5s ease;
       }
       
       .show-back {
-        display: block !important;
+        display: flex !important;
+      }
+      
+      /* 加载动画 */
+      .loader {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1000;
+      }
+      
+      .loader-spinner {
+        width: 50px;
+        height: 50px;
+        border: 5px solid rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        border-top-color: #FF69B4;
+        animation: spin 1s linear infinite;
+      }
+      
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+      
+      /* 触摸反馈 */
+      .touch-feedback {
+        position: absolute;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, transparent 70%);
+        transform: scale(0);
+        animation: touchRipple 0.6s ease-out;
+        pointer-events: none;
+      }
+      
+      @keyframes touchRipple {
+        to {
+          transform: scale(4);
+          opacity: 0;
+        }
+      }
+      
+      /* 安全区域适配 */
+      .safe-area-top {
+        padding-top: env(safe-area-inset-top);
+      }
+      
+      .safe-area-bottom {
+        padding-bottom: env(safe-area-inset-bottom);
       }
     </style>
   </head>
   <body>
-    <h1>Merry Christmas</h1>
+    <!-- 加载动画 -->
+    <div class="loader" id="loader">
+      <div class="loader-spinner"></div>
+    </div>
+    
+    <!-- 主页面内容 -->
+    <h1>🎄 Merry Christmas 🎄</h1>
     <div id="container"></div>
     <div id="bottom"></div>
     <embed id="pic" src="oldmen.svg" type="image/svg+xml" ></embed> 
@@ -309,153 +460,370 @@
     
     <!-- 圣诞树视频容器 -->
     <div id="tree-container">
-      <video id="tree-video" muted="muted" autoplay="autoplay" loop="loop">
+      <video id="tree-video" muted playsinline webkit-playsinline>
         <source src="./1.mp4" type="video/mp4">
+        <source src="./1.webm" type="video/webm">
         您的浏览器不支持视频播放
       </video>
     </div>
     
-    <!-- 返回按钮 -->
+    <!-- 控制按钮 -->
     <button id="back-btn">←</button>
+    <button id="music-toggle">🎵</button>
     
-    <!-- 音频播放器 -->
-    <audio id="bg-music" autoplay="autoplay" preload="auto" loop="loop">
+    <!-- 音频 -->
+    <audio id="bg-music" preload="metadata">
       <source src="./music/jinglebells.mp3" type="audio/mpeg">
       <source src="./music/jinglebells.ogg" type="audio/ogg">
       您的浏览器不支持音频播放
     </audio>
     
     <script>
-      // 雪花效果代码
-      var w = innerWidth;
-      var h = innerHeight;
-      var container = document.querySelector('#container');
-      var bottom = document.querySelector('#bottom');
-      var snowImg = document.createElement('img');
-      var snow_top = 0;
-      var snow_left = 0;
-      var count = 0;
-      var snow_number = h / 3;
-      
-      snowImg.src = './snow.svg';
-      snowImg.className = 'snowflake';
-      
-      var int1 = setInterval(function(){
-        w = innerWidth;
-        h = innerHeight;
-        var snowTmpImg = snowImg.cloneNode();
-        snow_left = Math.round(Math.random()*w) - 20;
-        snowTmpImg.style.left = snow_left + 'px';
-        snowTmpImg.style.width = Math.round(Math.random()*15) + 5 + 'px';
-        snowTmpImg.style.opacity = Math.round(Math.random()*10)/10;
-        container.appendChild(snowTmpImg);
-        count++;
-      }, 100);
-      
-      var int2 = setInterval(function(){
-        if (container.childNodes.length > snow_number) {
-          container.removeChild(container.childNodes[0]);
+      // 等待DOM加载完成
+      document.addEventListener('DOMContentLoaded', function() {
+        // 初始化变量
+        let w = window.innerWidth;
+        let h = window.innerHeight;
+        const container = document.querySelector('#container');
+        const bottom = document.querySelector('#bottom');
+        const button = document.getElementById('but');
+        const treeContainer = document.getElementById('tree-container');
+        const treeVideo = document.getElementById('tree-video');
+        const backBtn = document.getElementById('back-btn');
+        const bgMusic = document.getElementById('bg-music');
+        const musicToggle = document.getElementById('music-toggle');
+        const loader = document.getElementById('loader');
+        const mainElements = [
+          document.querySelector('h1'),
+          document.getElementById('pic'),
+          document.getElementById('bottom'),
+          button
+        ];
+        
+        // 设备检测
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+        const isAndroid = /Android/.test(navigator.userAgent);
+        
+        console.log('设备检测:', { isMobile, isIOS, isAndroid });
+        
+        // 初始化雪花
+        function initSnow() {
+          const snowImg = new Image();
+          snowImg.src = './snow.svg';
+          snowImg.className = 'snowflake';
+          
+          // 根据设备调整雪花数量
+          const snowNumber = isMobile ? Math.floor(h / 6) : Math.floor(h / 4);
+          
+          let snowInterval = setInterval(() => {
+            w = window.innerWidth;
+            h = window.innerHeight;
+            
+            const snow = snowImg.cloneNode();
+            const snowLeft = Math.random() * w;
+            const size = Math.random() * (isMobile ? 8 : 12) + (isMobile ? 4 : 6);
+            const opacity = Math.random() * 0.5 + 0.3;
+            const duration = Math.random() * 5 + 8;
+            
+            snow.style.left = `${snowLeft}px`;
+            snow.style.width = `${size}px`;
+            snow.style.height = `${size}px`;
+            snow.style.opacity = opacity;
+            snow.style.animationDuration = `${duration}s, ${duration * 0.7}s`;
+            snow.style.animationDelay = `${Math.random() * 5}s`;
+            
+            container.appendChild(snow);
+            
+            // 自动清理雪花
+            setTimeout(() => {
+              if (snow.parentNode === container) {
+                container.removeChild(snow);
+              }
+            }, duration * 1000);
+            
+            // 控制雪花数量
+            if (container.children.length > snowNumber) {
+              container.removeChild(container.firstChild);
+            }
+          }, isMobile ? 150 : 100);
+          
+          return snowInterval;
         }
-      }, 1000);
-      
-      // 按钮功能 - 显示圣诞树
-      var button = document.getElementById('but');
-      var treeContainer = document.getElementById('tree-container');
-      var treeVideo = document.getElementById('tree-video');
-      var backBtn = document.getElementById('back-btn');
-      var bgMusic = document.getElementById('bg-music');
-      var mainElements = [document.querySelector('h1'), 
-                         document.getElementById('pic'), 
-                         document.getElementById('bottom')];
-      
-      // 自动播放音乐（需要用户交互）
-      document.addEventListener('click', function() {
-        if (bgMusic.paused) {
-          bgMusic.play().catch(function(e) {
-            console.log("自动播放被阻止:", e);
-          });
+        
+        // 触摸反馈效果
+        function addTouchFeedback(x, y) {
+          const feedback = document.createElement('div');
+          feedback.className = 'touch-feedback';
+          feedback.style.left = `${x}px`;
+          feedback.style.top = `${y}px`;
+          document.body.appendChild(feedback);
+          
+          setTimeout(() => {
+            if (feedback.parentNode) {
+              feedback.parentNode.removeChild(feedback);
+            }
+          }, 600);
         }
-      }, { once: true });
-      
-      // 确保页面加载后尝试播放音乐
-      window.addEventListener('load', function() {
-        setTimeout(function() {
-          bgMusic.play().catch(function(e) {
-            console.log("音乐自动播放可能需要用户交互:", e);
+        
+        // 音乐控制
+        function initMusic() {
+          bgMusic.volume = 0.5;
+          bgMusic.muted = false;
+          
+          // 更新音乐按钮状态
+          function updateMusicButton() {
+            musicToggle.textContent = bgMusic.paused ? '🔇' : '🎵';
+          }
+          
+          // 音乐按钮点击事件
+          musicToggle.addEventListener('click', function(e) {
+            if (bgMusic.paused) {
+              bgMusic.play().then(() => {
+                updateMusicButton();
+              }).catch(err => {
+                console.log('音乐播放失败:', err);
+                // 如果是自动播放限制，提示用户
+                alert('请点击页面任意位置允许播放音乐');
+              });
+            } else {
+              bgMusic.pause();
+              updateMusicButton();
+            }
+            
+            // 触摸反馈
+            if (isMobile) {
+              addTouchFeedback(e.clientX || e.touches[0].clientX, e.clientY || e.touches[0].clientY);
+            }
           });
-        }, 1000);
-      });
-      
-      // 显示圣诞树
-      button.addEventListener('click', function() {
-        // 隐藏主页面元素
-        mainElements.forEach(function(el) {
-          el.classList.add('hide-main');
+          
+          // 监听音乐状态变化
+          bgMusic.addEventListener('play', updateMusicButton);
+          bgMusic.addEventListener('pause', updateMusicButton);
+          bgMusic.addEventListener('ended', () => {
+            bgMusic.currentTime = 0;
+            bgMusic.play();
+          });
+          
+          // 尝试自动播放（可能需要用户交互）
+          document.addEventListener('click', function initAudio() {
+            if (bgMusic.paused) {
+              bgMusic.play().catch(console.error);
+            }
+            document.removeEventListener('click', initAudio);
+          }, { once: true });
+          
+          updateMusicButton();
+        }
+        
+        // 视频控制
+        function initVideo() {
+          // 视频错误处理
+          treeVideo.addEventListener('error', function(e) {
+            console.error('视频加载错误:', e);
+            loader.style.display = 'none';
+            
+            // 显示错误信息
+            if (!treeContainer.querySelector('.error-message')) {
+              const errorMsg = document.createElement('div');
+              errorMsg.className = 'error-message';
+              errorMsg.style.cssText = `
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                color: white;
+                text-align: center;
+                background: rgba(255, 0, 0, 0.7);
+                padding: 20px;
+                border-radius: 10px;
+                z-index: 100;
+              `;
+              errorMsg.innerHTML = `
+                <h3>视频加载失败</h3>
+                <p>请检查视频文件路径是否正确</p>
+                <p style="font-size: 0.8em; margin-top: 10px;">当前路径: ${treeVideo.querySelector('source').src}</p>
+              `;
+              treeContainer.appendChild(errorMsg);
+            }
+          });
+          
+          treeVideo.addEventListener('loadeddata', function() {
+            console.log('视频加载成功');
+            loader.style.display = 'none';
+          });
+          
+          treeVideo.addEventListener('waiting', function() {
+            loader.style.display = 'block';
+          });
+          
+          treeVideo.addEventListener('canplay', function() {
+            loader.style.display = 'none';
+          });
+          
+          // 预加载视频
+          treeVideo.load();
+        }
+        
+        // 按钮事件处理
+        function initButtons() {
+          // 主按钮点击事件
+          button.addEventListener('click', function(e) {
+            // 显示加载动画
+            loader.style.display = 'block';
+            
+            // 隐藏主页面元素
+            mainElements.forEach(el => {
+              if (el) el.classList.add('hide-main');
+            });
+            
+            // 显示圣诞树
+            treeContainer.classList.add('show-tree');
+            
+            // 显示返回按钮
+            backBtn.classList.add('show-back');
+            
+            // 播放视频
+            treeVideo.play().then(() => {
+              loader.style.display = 'none';
+              console.log('视频播放成功');
+              
+              // 调整音乐音量
+              bgMusic.volume = 0.3;
+              
+            }).catch(err => {
+              console.error('视频播放失败:', err);
+              loader.style.display = 'none';
+              
+              // 显示错误提示
+              alert('视频播放失败，请检查视频文件或刷新页面');
+            });
+            
+            // 触摸反馈
+            if (isMobile && e.touches) {
+              addTouchFeedback(e.touches[0].clientX, e.touches[0].clientY);
+            }
+          });
+          
+          // 返回按钮点击事件
+          backBtn.addEventListener('click', function(e) {
+            // 隐藏圣诞树
+            treeContainer.classList.remove('show-tree');
+            
+            // 隐藏返回按钮
+            backBtn.classList.remove('show-back');
+            
+            // 暂停视频
+            treeVideo.pause();
+            treeVideo.currentTime = 0;
+            
+            // 显示主页面元素
+            mainElements.forEach(el => {
+              if (el) el.classList.remove('hide-main');
+            });
+            
+            // 恢复音乐音量
+            bgMusic.volume = 0.5;
+            
+            // 触摸反馈
+            if (isMobile && e.touches) {
+              addTouchFeedback(e.touches[0].clientX, e.touches[0].clientY);
+            }
+          });
+          
+          // 触摸事件处理（移动端）
+          if (isMobile) {
+            document.addEventListener('touchstart', function(e) {
+              // 防止多点触控
+              if (e.touches.length > 1) {
+                e.preventDefault();
+              }
+            }, { passive: false });
+          }
+        }
+        
+        // 窗口调整处理
+        function handleResize() {
+          w = window.innerWidth;
+          h = window.innerHeight;
+          
+          // 调整底部渐变高度
+          bottom.style.height = `${h * 0.3}px`;
+          
+          // 如果是移动设备，调整按钮位置
+          if (isMobile) {
+            const buttonBottom = h * 0.2;
+            button.style.bottom = `${buttonBottom}px`;
+          }
+        }
+        
+        // 方向变化处理
+        function handleOrientation() {
+          setTimeout(handleResize, 300);
+        }
+        
+        // 页面可见性处理
+        function handleVisibility() {
+          if (document.hidden) {
+            // 页面隐藏时暂停视频和音乐
+            treeVideo.pause();
+            bgMusic.pause();
+          } else {
+            // 页面显示时恢复播放
+            if (treeContainer.classList.contains('show-tree')) {
+              treeVideo.play().catch(console.error);
+            }
+            if (!bgMusic.paused) {
+              bgMusic.play().catch(console.error);
+            }
+          }
+        }
+        
+        // 初始化所有功能
+        function init() {
+          // 初始化雪花
+          const snowInterval = initSnow();
+          
+          // 初始化音乐
+          initMusic();
+          
+          // 初始化视频
+          initVideo();
+          
+          // 初始化按钮
+          initButtons();
+          
+          // 初始调整
+          handleResize();
+          
+          // 事件监听
+          window.addEventListener('resize', handleResize);
+          window.addEventListener('orientationchange', handleOrientation);
+          document.addEventListener('visibilitychange', handleVisibility);
+          
+          // 清理函数
+          return () => {
+            clearInterval(snowInterval);
+            window.removeEventListener('resize', handleResize);
+            window.removeEventListener('orientationchange', handleOrientation);
+            document.removeEventListener('visibilitychange', handleVisibility);
+          };
+        }
+        
+        // 启动初始化
+        const cleanup = init();
+        
+        // 页面卸载时清理
+        window.addEventListener('beforeunload', cleanup);
+        
+        // 控制台信息
+        console.log('圣诞页面初始化完成，设备:', {
+          isMobile,
+          isIOS,
+          isAndroid,
+          screenSize: `${w}x${h}`,
+          pixelRatio: window.devicePixelRatio
         });
-        
-        // 隐藏按钮
-        button.style.display = 'none';
-        
-        // 显示圣诞树视频
-        treeContainer.classList.add('show-tree');
-        
-        // 显示返回按钮
-        backBtn.classList.add('show-back');
-        
-        // 播放圣诞树视频
-        treeVideo.play().catch(function(e) {
-          console.log("视频播放错误:", e);
-        });
-        
-        // 增加背景音乐音量
-        bgMusic.volume = 0.7;
-        
-        console.log("圣诞树显示！");
-      });
-      
-      // 返回主页面
-      backBtn.addEventListener('click', function() {
-        // 显示主页面元素
-        mainElements.forEach(function(el) {
-          el.classList.remove('hide-main');
-        });
-        
-        // 显示按钮
-        button.style.display = 'block';
-        
-        // 隐藏圣诞树视频
-        treeContainer.classList.remove('show-tree');
-        
-        // 隐藏返回按钮
-        backBtn.classList.remove('show-back');
-        
-        // 暂停圣诞树视频
-        treeVideo.pause();
-        
-        // 恢复背景音乐音量
-        bgMusic.volume = 0.5;
-        
-        console.log("返回主页面！");
-      });
-      
-      // 窗口大小调整时更新雪花参数
-      window.addEventListener('resize', function() {
-        w = innerWidth;
-        h = innerHeight;
-        snow_number = h / 3;
-      });
-      
-      // 确保视频元素正确加载
-      treeVideo.addEventListener('loadeddata', function() {
-        console.log("圣诞树视频加载完成");
-      });
-      
-      treeVideo.addEventListener('error', function() {
-        console.log("圣诞树视频加载失败，检查视频文件路径");
-      });
-      
-      bgMusic.addEventListener('error', function() {
-        console.log("背景音乐加载失败，检查音乐文件路径");
       });
     </script>
   </body>
