@@ -1,102 +1,433 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-		<meta charset="utf-8">
- 
-		<meta name="description" content="A Christmas tree built out of form elements." />
-		<meta name="author" content="Hakim El Hattab" />
- 
-		<meta http-equiv="X-UA-Compatible" content="chrome=1">
- 
-        <title>DOM Tree</title>
- 
-		<link href="css/domtree.css" rel="stylesheet" media="screen" />
- 
-		<link href='https://fonts.googleapis.com/css?family=Armata' rel='stylesheet' type='text/css'>
- 
-    </head>
-    <body>
-    	<div class="tree"></div>
- 
-		<script src="js/domtree.js"></script>
- 
-		<!-- Third party scripts and sharing UI -->
-		<p class="project-title">DOM Tree</p>
- 
-		<div class="credits">
-			<!-- <a href="https://blog.csdn.net/qq_53673551?spm=1000.2115.3001.5343">知心宝贝</a>
-			<a href="https://twitter.com/hakimel">文章代码参考@hakimel</a> -->
-		</div>
- 
-		<style type="text/css" media="screen">
-			.project-title {
-				position: absolute;
-				left: 25px;
-				bottom: 20px;
- 
-				font-size: 16px;
-				color: #fff;
-			}
- 
-			.credits {
-				position: absolute;
-				right: 20px;
-				bottom: 25px;
-				font-size: 15px;
-				z-index: 20;
-				color: #fff;
-				vertical-align: middle;
-			}
- 
-			.credits * + * {
-				margin-left: 15px;
-			}
- 
-			.credits a {
-				padding: 8px 10px;
-				color: rgba(255,255,255,0.7);
-				border: 2px solid rgba(255,255,255,0.7);
-				text-decoration: none;
-			}
- 
-			.credits a:hover {
-				border-color: #fff;
-				color: #fff;
-			}
- 
-			@media screen and (max-width: 1040px) {
-				.project-title {
-					display: none;
-				}
- 
-				.credits {
-					width: 100%;
-					left: 0;
-					right: auto;
-					bottom: 0;
-					padding: 30px 0;
-					background: #b72424;
-					text-align: center;
-				}
- 
-				.credits a {
-					display: inline-block;
-					margin-top: 7px;
-					margin-bottom: 7px;
-				}
-			}
-		</style>
- 
-		<script>
-			var _gaq = [['_setAccount', 'UA-15240703-1'], ['_trackPageview']];
-			(function(d, t) {
-			var g = d.createElement(t),
-			    s = d.getElementsByTagName(t)[0];
-			g.async = true;
-			g.src = ('https:' == location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-			s.parentNode.insertBefore(g, s);
-			})(document, 'script');
-		</script>
- 
-    </body>
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" name="viewport" content="initial-scale=1,user-scalable=no" />
+    <link rel="subresource" href="snow.svg" />
+    <title>Merry Christmas</title>
+    <style>
+      /* 基础动画定义 */
+      @keyframes rotate{
+        from { transform: rotate(0deg);}
+        to { transform: rotate(360deg);}
+      }
+      @-webkit-keyframes rotate{
+        from { transform: rotate(0deg);}
+        to { transform: rotate(360deg);}
+      }
+      @-moz-keyframes rotate{
+         from { transform: rotate(0deg);}
+        to { transform: rotate(360deg);}
+      }
+
+      @keyframes snowRotate {
+        from {
+          transform: rotate(0);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      @-webkit-keyframes snowRotate {
+        from {
+          -webkit-transform: rotate(0);
+        }
+        to {
+          -webkit-transform: rotate(360deg);
+        }
+      }
+      @-moz-keyframes snowRotate {
+        from {
+          -moz-transform: rotate(0);
+        }
+        to {
+          -moz-transform: rotate(360deg);
+        }
+      }
+      
+      @keyframes snowMove {
+        form {
+          top: 0%;
+        }
+        to {
+          top: 100%;
+        }
+      }
+      @-webkit-keyframes snowMove {
+        form {
+          top: 0%;
+        }
+        to {
+          top: 100%;
+        }
+      }
+      @-moz-keyframes snowMove {
+        form {
+          top: 0%;
+        }
+        to {
+          top: 100%;
+        }
+      }
+      
+      @keyframes textRotate {
+        from {
+          transform: perspective(500px) rotate3d(0, 1, 0, 0);
+          color: green;
+        }
+        20% {
+          transform: perspective(500px) rotate3d(0, 1, 0, 360deg);
+          color: yellow;
+        }
+        40% {
+          transform: perspective(500px) rotate3d(1, 0, 0, 0deg);
+        }
+        60% {
+          transform: perspective(500px) rotate3d(1, 0, 0, 360deg);
+          color: green;
+        }
+        80% {
+          transform: perspective(500px) rotate3d(0, 0, 1, 0deg);
+        }
+        to {
+          transform: perspective(500px) rotate3d(0, 0, 1, 360deg);
+          color: yellow;
+        }
+      }
+      @-webkit-keyframes textRotate {
+        from {
+          -webkit-transform: perspective(500px) rotate3d(0, 1, 0, 0);
+          color: green;
+        }
+        20% {
+          -webkit-transform: perspective(500px) rotate3d(0, 1, 0, 360deg);
+          color: yellow;
+        }
+        40% {
+          -webkit-transform: perspective(500px) rotate3d(1, 0, 0, 0deg);
+        }
+        60% {
+          -webkit-transform: perspective(500px) rotate3d(1, 0, 0, 360deg);
+          color: green;
+        }
+        80% {
+          -webkit-transform: perspective(500px) rotate3d(0, 0, 1, 0deg);
+        }
+        to {
+          -webkit-transform: perspective(500px) rotate3d(0, 0, 1, 360deg);
+          color: yellow;
+        }
+      }
+      @-moz-keyframes textRotate {
+        from {
+          -moz-transform: perspective(500px) rotate3d(0, 1, 0, 0);
+          color: green;
+        }
+        20% {
+          -moz-transform: perspective(500px) rotate3d(0, 1, 0, 360deg);
+          color: yellow;
+        }
+        40% {
+          -moz-transform: perspective(500px) rotate3d(1, 0, 0, 0deg);
+        }
+        60% {
+          -moz-transform: perspective(500px) rotate3d(1, 0, 0, 360deg);
+          color: green;
+        }
+        80% {
+          -moz-transform: perspective(500px) rotate3d(0, 0, 1, 0deg);
+        }
+        to {
+          -moz-transform: perspective(500px) rotate3d(0, 0, 1, 360deg);
+          color: yellow;
+        }
+      }
+      
+      /* 基础样式 */
+      body {
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        background: rgb(200, 0, 0);
+        overflow: hidden;
+      }
+      
+      h1 {
+        font-size: 2rem;
+        font-family: Times New Roman;
+        max-width: 8em;
+        text-shadow: .03em .03em .03em white,
+        -.02em -.02em .02em black;
+        text-align: center;
+        margin: auto;
+        margin-top: 100px;
+        box-shadow: 0 -.1em .1em white;
+        animation: textRotate 24s linear infinite;
+        -webkit-animation: textRotate 24s linear infinite;
+        -moz-animation: textRotate 24s linear infinite;
+        z-index: 100;
+        position: relative;
+      }
+      
+      #container {
+        width: 100%;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        z-index: 2;
+      }
+      
+      img.snowflake {
+        width: 10px;
+        position: absolute;
+        top: 0;
+        animation: snowRotate 5s infinite alternate,
+        snowMove 4s linear;
+        -webkit-animation: snowRotate 5s infinite alternate,
+        snowMove 4s linear;
+        -moz-animation: snowRotate 5s infinite alternate,
+        snowMove 4s linear;
+        pointer-events: none;
+      }
+      
+      #bottom {
+        width: 100%;
+        height: 30%;
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        background: linear-gradient(transparent, rgb(200, 0, 0));
+        background: -webkit-linear-gradient(transparent, rgb(200, 0, 0));
+        background: -moz-linear-gradient(transparent, rgb(200, 0, 0));
+        z-index: 3;
+        pointer-events: none;
+      }
+      
+      #pic{
+        display: block;
+        position: fixed;
+        overflow: hidden;
+        width: 200px;
+        height: 200px;    
+        top: 50%;
+        left: 50%;
+        margin-top: -100px;
+        margin-left: -100px;
+        border-radius: 50%;
+        border: 5px;
+        border-color: pink;
+        border-style: ridge;
+        animation: rotate 10s linear 0s infinite;
+        -webkit-animation: rotate 10s linear 0s infinite;
+        -moz-animation: rotate 10s linear 0s infinite;
+        z-index: 4;
+      }
+
+      /* 已删除按钮相关样式 */
+      #but, #tree-container, #back-btn {
+        display: none !important;
+      }
+      
+      /* 音频控制按钮样式 */
+      #music-control {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        background-color: pink;
+        border-radius: 50%;
+        border: none;
+        color: black;
+        font-size: 1.2rem;
+        cursor: pointer;
+        z-index: 11;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      #music-control:hover {
+        background-color: #ff9acd;
+        transform: scale(1.1);
+      }
+      
+      /* 移动端适配 */
+      @media screen and (max-width: 768px) {
+        h1 {
+          font-size: 1.5rem;
+          margin-top: 60px;
+        }
+        
+        #pic {
+          width: 150px;
+          height: 150px;
+          margin-top: -75px;
+          margin-left: -75px;
+        }
+        
+        img.snowflake {
+          width: 8px;
+        }
+        
+        #music-control {
+          bottom: 15px;
+          right: 15px;
+          width: 45px;
+          height: 45px;
+        }
+      }
+      
+      @media screen and (max-width: 480px) {
+        h1 {
+          font-size: 1.2rem;
+          margin-top: 40px;
+        }
+        
+        #pic {
+          width: 120px;
+          height: 120px;
+          margin-top: -60px;
+          margin-left: -60px;
+          border-width: 3px;
+        }
+        
+        img.snowflake {
+          width: 6px;
+        }
+        
+        #music-control {
+          width: 40px;
+          height: 40px;
+          font-size: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Merry Christmas</h1>
+    <div id="container"></div>
+    <div id="bottom"></div>
+    <embed id="pic" src="oldmen.svg" type="image/svg+xml" ></embed> 
+    
+    <!-- 音频控制按钮 -->
+    <button id="music-control">♪</button>
+    
+    <!-- 音频播放器 -->
+    <audio id="bg-music" preload="auto" loop="loop">
+      <source src="./music/jinglebells.mp3" type="audio/mpeg">
+      <source src="./music/jinglebells.ogg" type="audio/ogg">
+      您的浏览器不支持音频播放
+    </audio>
+    
+    <script>
+      // 雪花效果代码
+      var w = innerWidth;
+      var h = innerHeight;
+      var container = document.querySelector('#container');
+      var snowImg = document.createElement('img');
+      var snow_number = h / 3;
+      
+      snowImg.src = './snow.svg';
+      snowImg.className = 'snowflake';
+      
+      // 创建雪花
+      var int1 = setInterval(function(){
+        w = innerWidth;
+        h = innerHeight;
+        var snowTmpImg = snowImg.cloneNode();
+        snow_left = Math.round(Math.random()*w) - 20;
+        snowTmpImg.style.left = snow_left + 'px';
+        snowTmpImg.style.width = Math.round(Math.random()*15) + 5 + 'px';
+        snowTmpImg.style.opacity = Math.round(Math.random()*10)/10;
+        container.appendChild(snowTmpImg);
+      }, 100);
+      
+      // 清理过多雪花
+      var int2 = setInterval(function(){
+        if (container.childNodes.length > snow_number) {
+          container.removeChild(container.childNodes[0]);
+        }
+      }, 1000);
+      
+      // 音频控制
+      var bgMusic = document.getElementById('bg-music');
+      var musicControl = document.getElementById('music-control');
+      var isPlaying = false;
+      
+      // 页面加载后立即播放音乐
+      window.addEventListener('load', function() {
+        // 尝试自动播放音乐
+        playMusic();
+        
+        // 添加点击事件用于用户交互后播放
+        document.body.addEventListener('click', function() {
+          if (!isPlaying) {
+            playMusic();
+          }
+        }, { once: true });
+      });
+      
+      // 播放音乐函数
+      function playMusic() {
+        bgMusic.volume = 0.5;
+        bgMusic.play().then(function() {
+          isPlaying = true;
+          musicControl.textContent = '♫';
+          console.log("圣诞音乐开始播放！");
+        }).catch(function(e) {
+          console.log("音乐播放需要用户交互:", e);
+          musicControl.textContent = '♪';
+          musicControl.title = "点击播放音乐";
+        });
+      }
+      
+      // 音乐控制按钮点击事件
+      musicControl.addEventListener('click', function() {
+        if (isPlaying) {
+          bgMusic.pause();
+          isPlaying = false;
+          musicControl.textContent = '♪';
+          console.log("音乐已暂停");
+        } else {
+          bgMusic.play();
+          isPlaying = true;
+          musicControl.textContent = '♫';
+          console.log("音乐已播放");
+        }
+      });
+      
+      // 监听音频播放状态
+      bgMusic.addEventListener('play', function() {
+        isPlaying = true;
+        musicControl.textContent = '♫';
+      });
+      
+      bgMusic.addEventListener('pause', function() {
+        isPlaying = false;
+        musicControl.textContent = '♪';
+      });
+      
+      bgMusic.addEventListener('error', function() {
+        console.log("背景音乐加载失败，检查音乐文件路径");
+        musicControl.style.display = 'none';
+      });
+      
+      // 窗口大小调整时更新雪花参数
+      window.addEventListener('resize', function() {
+        w = innerWidth;
+        h = innerHeight;
+        snow_number = h / 3;
+      });
+      
+      // 触摸设备优化
+      document.addEventListener('touchstart', function() {
+        if (!isPlaying) {
+          playMusic();
+        }
+      }, { once: true });
+    </script>
+  </body>
 </html>
