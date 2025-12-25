@@ -10,26 +10,7 @@ tree.style.width = width + 'px';
 tree.style.height = height + 'px';
  
 window.addEventListener( 'resize', resize, false );
-
-// 移动端适配 - 包装树容器
-document.addEventListener('DOMContentLoaded', function() {
-    // 在树生成代码之前添加包装器
-    const treeElement = document.querySelector('.tree');
-    if (treeElement) {
-        const wrapper = document.createElement('div');
-        wrapper.className = 'tree-container';
-        treeElement.parentNode.insertBefore(wrapper, treeElement);
-        wrapper.appendChild(treeElement);
-    }
-    
-    // 添加视口meta标签（如果不存在）
-    if (!document.querySelector('meta[name="viewport"]')) {
-        const viewportMeta = document.createElement('meta');
-        viewportMeta.name = 'viewport';
-        viewportMeta.content = 'width=device-width, initial-scale=1, maximum-scale=5';
-        document.head.appendChild(viewportMeta);
-    }
-});
+ 
 // The tree
 for( var i = 0; i < quantity; i++ ) {
 	let element = null,
@@ -117,4 +98,23 @@ function resize() {
 	tree.style.top = ( ( window.innerHeight - height - 100 ) / 2 ) + 'px';
 }
  
-resize();
+// resize();
+// 移动端适配 - 包装树容器
+document.addEventListener('DOMContentLoaded', function() {
+    // 在树生成代码之前添加包装器
+    const treeElement = document.querySelector('.tree');
+    if (treeElement) {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'tree-container';
+        treeElement.parentNode.insertBefore(wrapper, treeElement);
+        wrapper.appendChild(treeElement);
+    }
+    
+    // 添加视口meta标签（如果不存在）
+    if (!document.querySelector('meta[name="viewport"]')) {
+        const viewportMeta = document.createElement('meta');
+        viewportMeta.name = 'viewport';
+        viewportMeta.content = 'width=device-width, initial-scale=1, maximum-scale=5';
+        document.head.appendChild(viewportMeta);
+    }
+});
